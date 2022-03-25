@@ -12,7 +12,10 @@ class SearchDolibarr extends Command
      * @var string
      */
     protected $signature = 'dolibarr:search
-                            {--search=   : search keyword, example "CAP"}';
+                            {--search=    : search keyword, example "CAP"}
+                            {--orderby=   : order result by a field name (example "nom")}
+                            {--ordersort= : order sort (example "ASC" (default) or "DESC")}
+                            {--limit=     : request only some data (example "2")}';
 
     /**
      * The console command description.
@@ -39,9 +42,20 @@ class SearchDolibarr extends Command
     public function handle()
     {
         $tp = new DolibarrThirdparties;
-        $res = $tp->where("nom","LIKE", "%" . $this->option('search')  . "%")->get();
-        foreach($res as $c) {
-                dump([
+        $res = $tp->where("nom", "LIKE", "%" . $this->option('search')  . "%");
+        if (null !== $this->option('limit')) {
+            $tp->limit($this->option('limit'));
+        }
+        if (null !== $this->option('orderby')) {
+            if (null !== $this->option('ordersort')) {
+                $tp->orderBy($this->option('orderby'), $this->option('ordersort'));
+            }else {
+                $tp->orderBy($this->option('orderby'));
+            }
+        }
+        $res = $tp->get();
+        foreach ($res as $c) {
+            dump([
                 'name' => $c['name'],
                 'address' => $c['address'],
                 'zip' => $c['zip'],
