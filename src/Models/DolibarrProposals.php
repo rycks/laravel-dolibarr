@@ -45,6 +45,6 @@ class DolibarrProposals extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "proposals");
+        parent::__construct([ 'objectlabel' => "proposals"]);
     }
 }

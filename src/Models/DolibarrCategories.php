@@ -45,6 +45,6 @@ class DolibarrCategories extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "categories");
+        parent::__construct([ 'objectlabel' => "categories"]);
     }
 }

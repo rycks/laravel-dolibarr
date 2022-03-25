@@ -49,6 +49,6 @@ class DolibarrSupplierorders extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "supplierorders");
+        parent::__construct([ 'objectlabel' => "supplierorders"]);
     }
 }

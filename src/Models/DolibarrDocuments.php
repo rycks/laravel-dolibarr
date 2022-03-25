@@ -45,6 +45,6 @@ class DolibarrDocuments extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "documents");
+        parent::__construct([ 'objectlabel' => "documents"]);
     }
 }

@@ -45,6 +45,6 @@ class DolibarrWarehouses extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "warehouses");
+        parent::__construct([ 'objectlabel' => "warehouses"]);
     }
 }

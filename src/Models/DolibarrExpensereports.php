@@ -45,6 +45,6 @@ class DolibarrExpensereports extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "expensereports");
+        parent::__construct([ 'objectlabel' => "expensereports"]);
     }
 }

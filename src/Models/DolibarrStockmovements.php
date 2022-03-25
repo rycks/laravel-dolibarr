@@ -43,6 +43,6 @@ class DolibarrStockmovements extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "stockmovements");
+        parent::__construct([ 'objectlabel' => "stockmovements"]);
     }
 }

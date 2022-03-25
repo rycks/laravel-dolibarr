@@ -47,6 +47,6 @@ class DolibarrUsers extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "users");
+        parent::__construct([ 'objectlabel' => "users"]);
     }
 }

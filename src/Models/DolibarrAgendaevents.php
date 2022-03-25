@@ -45,6 +45,6 @@ class DolibarrAgendaevents extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("agendaevents");
+        parent::__construct([ 'objectlabel' => "agendaevents"]);]);
     }
 }

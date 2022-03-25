@@ -53,6 +53,6 @@ class DolibarrProducts extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct([ 'objectlabel' => "products");
+        parent::__construct([ 'objectlabel' => "products"]);
     }
 }
