@@ -29,7 +29,7 @@ DOLIBARR_AUTH_ACCESS=false
 ## Tests
 
 ```
-php artisan dolibarr:search
+php artisan dolibarr:search --help
 ```
 
 ## Code
