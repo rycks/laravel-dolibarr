@@ -18,7 +18,7 @@ trait DolibarrTrait
         $this->password = config('dolibarr.password');
         $this->auth_access = config('dolibarr.auth_access');
         $this->server_uri = config('dolibarr.server_uri');
-        $this->objectlabel = $attributes['objectlabel'];
+        parent::__construct($attributes);
     }
 
     public function login($reset = 0)
