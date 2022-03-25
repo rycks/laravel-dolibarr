@@ -45,6 +45,6 @@ class DolibarrShipments extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("shipments");
+        parent::__construct([ 'objectlabel' => "shipments");
     }
 }

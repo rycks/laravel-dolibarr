@@ -43,6 +43,6 @@ class DolibarrBoms extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("boms");
+        parent::__construct([ 'objectlabel' => "boms");
     }
 }

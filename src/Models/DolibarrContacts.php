@@ -51,6 +51,6 @@ class DolibarrContacts extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("contacts");
+        parent::__construct([ 'objectlabel' => "contacts");
     }
 }

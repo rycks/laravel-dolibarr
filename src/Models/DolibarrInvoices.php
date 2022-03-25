@@ -47,6 +47,6 @@ class DolibarrInvoices extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("invoices");
+        parent::__construct([ 'objectlabel' => "invoices");
     }
 }

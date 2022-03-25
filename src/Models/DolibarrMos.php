@@ -43,6 +43,6 @@ class DolibarrMos extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("mos");
+        parent::__construct([ 'objectlabel' => "mos");
     }
 }

@@ -43,6 +43,6 @@ class DolibarrTasks extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("tasks");
+        parent::__construct([ 'objectlabel' => "tasks");
     }
 }

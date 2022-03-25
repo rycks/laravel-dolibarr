@@ -45,6 +45,6 @@ class DolibarrBankaccounts extends DolibarrCommonObject
     ];
 
     public function __construct() {
-        parent::__construct("bankaccounts");
+        parent::__construct([ 'objectlabel' => "bankaccounts");
     }
 }
