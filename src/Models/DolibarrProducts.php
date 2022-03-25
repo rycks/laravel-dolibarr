@@ -52,7 +52,7 @@ class DolibarrProducts extends DolibarrCommonObject
         "pagination_data" => "",
     ];
 
-    public function __construct() {
+    public function __construct(array $attributes = []) {
         parent::__construct([ 'objectlabel' => "products"]);
     }
 }

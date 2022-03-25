@@ -47,7 +47,7 @@ class DolibarrThirdparties extends DolibarrCommonObject
         "objectlabel" => ""
     ];
 
-    public function __construct() {
+    public function __construct(array $attributes = []) {
         // Log::debug("Constructeur de DolibarrThirdparties");
 
         parent::__construct([ 'objectlabel' => "thirdparties"]);
