@@ -1,0 +1,48 @@
+{
+    "name": "caprel/laravel-dolibarr",
+    "description": "Accessing to Dolibarr API",
+    "keywords": [
+        "caprel",
+        "dolibarr"
+    ],
+    "homepage": "https://inligit.fr/cap-rel/dolibarr/laravel-dolibarr",
+    "license": "LGPL",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Eric Seigne",
+            "email": "eric.seigne@cap-rel.fr",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/config": "^6.0 || ^7.0 || ^8.0",
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Caprel\\Dolibarr\\DolibarrServiceProvider"
+            ],
+            "aliases": {
+                "Dolibarr": "Caprel\\Dolibarr\\DolibarrFacade"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Caprel\\Dolibarr\\": "src"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    }
+}
