@@ -27,18 +27,21 @@ class DolibarrCommonObject extends Model
         ));
 
         if ($result == null or isset($result["error"])) {
+            if(isset($result["error"]["message"])) {
+                Log::error("dolibarr: " . $result["error"]["message"]);
+            }
             return [];
         }
         return $result;
     }
 
-    public function where($a, $operator, $b)
+    public function where($fieldname, $operator, $value)
     {
-        $this->sqlfilters = "(t." . $a . ":" . $operator . ":'" . $b . "')";
+        $this->sqlfilters = "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
         return $this;
     }
 
-    public function orderBy($field, $order)
+    public function orderBy($field, $order='ASC')
     {
         $this->sortfield = "t." . $field;
         $this->sortorder = $order;
