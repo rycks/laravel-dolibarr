@@ -6,7 +6,7 @@
         "dolibarr"
     ],
     "homepage": "https://inligit.fr/cap-rel/dolibarr/laravel-dolibarr",
-    "license": "LGPL",
+    "license": "LGPL-3.0-or-later",
     "type": "library",
     "authors": [
         {
