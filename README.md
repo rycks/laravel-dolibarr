@@ -38,8 +38,18 @@ The main idea is to give "laravel" reflex, then you can make a search on ThirdPa
 
 ```
 $tp = new DolibarrThirdparties;
-$res = $tp->where("nom","LIKE", "%" . $this->option('search')  . "%")->get();
+$res = $tp->where("nom","LIKE", "%CAP%")->get();
 print_r($res);
+```
+
+And for example you can put others options in your request :
+
+```
+$res = $tp->where("nom","LIKE", "%CAP%")->limit(10)->get();
+```
+
+```
+$res = $tp->where("nom","LIKE", "%CAP%")->limit(10)->orderBy("nom")->get();
 ```
 
 Whith all dolibarr objects:
