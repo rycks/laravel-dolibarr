@@ -18,7 +18,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
- namespace Caprel\Dolibarr\Models;
+namespace Caprel\Dolibarr\Models;
 
 use Caprel\Dolibarr\Models\DolibarrCommonObject;
 
@@ -45,6 +45,7 @@ class DolibarrAgendaevents extends DolibarrCommonObject
     ];
 
     public function __construct(array $attributes = []) {
-        parent::__construct([ 'objectlabel' => "agendaevents"]);
+        $attributes['objectlabel'] = "agendaevents";
+        parent::__construct($attributes);
     }
 }
