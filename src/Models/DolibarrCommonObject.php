@@ -5,12 +5,13 @@ namespace Caprel\Dolibarr\Models;
 use Illuminate\Database\Eloquent\Model;
 use Caprel\Dolibarr\Traits\DolibarrTrait;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Collection;
 
 class DolibarrCommonObject extends Model
 {
     use DolibarrTrait;
 
-    public function get() : array
+    public function get($filter = []): Collection
     {
         $data = [];
         foreach ($this->fillable as $key) {
@@ -18,21 +19,29 @@ class DolibarrCommonObject extends Model
                 $data[$key] = $this->$key;
             }
         }
-        // Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data request is " . json_encode($data));
 
+        $url = $this->objectlabel;
+        if (isset($filter['id'])) {
+            $url .= '/' . $filter['id'];
+            $data = [];
+        }
+
+        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", url=$url , data request is " . json_encode($data) . " and filter : " .json_encode($filter));
         $result = ($this->CallAPI(
             "GET",
-            $this->objectlabel,
+            $url,
             $data
         ));
 
-        if ($result == null or isset($result["error"])) {
-            if(isset($result["error"]["message"])) {
-                Log::error("dolibarr: " . $result["error"]["message"]);
+        if ($result === null or isset($result->error)) {
+            if (isset($result->error->message)) {
+                Log::error("dolibarr: " . $result->error->message);
             }
-            return [];
+            return collect([]);
         }
-        return $result;
+
+        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data result is " . gettype($result));
+        return collect($result);
     }
 
     public function where($fieldname, $operator, $value)

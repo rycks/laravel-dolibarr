@@ -47,8 +47,7 @@ trait DolibarrTrait
         }
     }
 
-
-    public function CallAPI($method, $url, $data = false)
+    public function CallAPI($method, $url, $data = null)
     {
         $curl = curl_init();
         $httpheader = ['DOLAPIKEY: ' .$this->token];
@@ -60,7 +59,7 @@ trait DolibarrTrait
                 curl_setopt($curl, CURLOPT_POST, 1);
                 $httpheader[] = "Content-Type:application/json";
 
-                if ($data) {
+                if (null !== $data) {
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 }
 
@@ -70,13 +69,13 @@ trait DolibarrTrait
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
                 $httpheader[] = "Content-Type:application/json";
 
-                if ($data) {
+                if (null !== $data) {
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 }
 
                 break;
             default:
-                if ($data) {
+                if (null !== $data) {
                     $url = sprintf("%s?%s", $url, http_build_query($data));
                 }
         }
@@ -94,6 +93,6 @@ trait DolibarrTrait
 
         curl_close($curl);
 
-        return json_decode($result, true);
+        return json_decode($result);
     }
 }

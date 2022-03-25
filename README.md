@@ -8,6 +8,7 @@
 composer require caprel/laravel-dolibarr
 ```
 
+Voir https://packagist.org/packages/caprel/laravel-dolibarr
 
 ## Publish config file :
 
