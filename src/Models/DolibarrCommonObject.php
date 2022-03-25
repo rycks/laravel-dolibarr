@@ -35,7 +35,7 @@ class DolibarrCommonObject extends Model
                 $data[$key] = $this->$key;
             }
         }
-        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data request is " . json_encode($data));
+        // Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data request is " . json_encode($data));
 
         $result = ($this->CallAPI(
             "GET",

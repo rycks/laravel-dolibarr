@@ -11,14 +11,14 @@ trait DolibarrTrait
     private $auth_access = false;
     private $server_uri = null;
 
-    public function __construct(string $objectlabel) {
-        Log::debug("Constructeur du trait dolibarr");
+    public function __construct(array $attributes = []) {
+        // Log::debug("Constructeur du trait dolibarr");
         $this->token = config('dolibarr.api_key');
         $this->login = config('dolibarr.login');
         $this->password = config('dolibarr.password');
         $this->auth_access = config('dolibarr.auth_access');
         $this->server_uri = config('dolibarr.server_uri');
-        $this->objectlabel = $objectlabel;
+        $this->objectlabel = $attributes['objectlabel'];
     }
 
     public function login($reset = 0)
@@ -53,7 +53,7 @@ trait DolibarrTrait
         $curl = curl_init();
         $httpheader = ['DOLAPIKEY: ' .$this->token];
         $url = $this->server_uri."/api/index.php/" . $url;
-        Log::debug("DolibarrTrait::CallAPI with token = " . $this->token);
+        // Log::debug("DolibarrTrait::CallAPI with token = " . $this->token);
 
         switch ($method) {
             case "POST":
