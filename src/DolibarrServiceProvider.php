@@ -19,7 +19,6 @@ class DolibarrServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 SearchDolibarr::class,
-                TestDolibarrPackage::class,
             ]);
         }
 
