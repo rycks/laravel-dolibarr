@@ -25,6 +25,7 @@ use Caprel\Dolibarr\Models\DolibarrCommonObject;
 class DolibarrAgendaevents extends DolibarrCommonObject
 {
     protected $fillable = [
+        "id",
         "sortfield",
         "sortorder",
         "limit",
@@ -35,6 +36,7 @@ class DolibarrAgendaevents extends DolibarrCommonObject
     ];
 
     protected $attributes = [
+        "id" => null,
         "sortfield" => "t.id",
         "sortorder" => "ASC",
         "limit" => 100,

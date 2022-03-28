@@ -11,7 +11,7 @@ class DolibarrCommonObject extends Model
 {
     use DolibarrTrait;
 
-    public function get($filter = []): Collection
+    public function get(): Collection
     {
         $data = [];
         foreach ($this->fillable as $key) {
@@ -21,12 +21,12 @@ class DolibarrCommonObject extends Model
         }
 
         $url = $this->objectlabel;
-        if (isset($filter['id'])) {
-            $url .= '/' . $filter['id'];
+        if (isset($data['id']) && null !== $data['id']) {
+            $url .= '/' . $data['id'];
             $data = [];
         }
 
-        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", url=$url , data request is " . json_encode($data) . " and filter : " .json_encode($filter));
+        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", url=$url , data request is " . json_encode($data));
         $result = ($this->CallAPI(
             "GET",
             $url,
@@ -46,7 +46,11 @@ class DolibarrCommonObject extends Model
 
     public function where($fieldname, $operator, $value)
     {
-        $this->sqlfilters = "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
+        if($fieldname == "id") {
+            $this->attributes['id'] = $value;
+        } else {
+            $this->sqlfilters = "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
+        }
         return $this;
     }
 

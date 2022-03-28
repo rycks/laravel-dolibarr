@@ -6,6 +6,7 @@ use Caprel\Dolibarr\Models\DolibarrCommonObject;
 class DolibarrProjects extends DolibarrCommonObject
 {
     protected $fillable = [
+        "id",
         "sortfield",
         "sortorder",
         "limit",
@@ -17,6 +18,7 @@ class DolibarrProjects extends DolibarrCommonObject
     ];
 
     protected $attributes = [
+        "id" => null,
         "sortfield" => "t.rowid",
         "sortorder" => "ASC",
         "limit" => 100,

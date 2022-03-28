@@ -8,8 +8,8 @@ use Caprel\Dolibarr\Models\DolibarrCommonObject;
 class DolibarrDocuments extends DolibarrCommonObject
 {
     protected $fillable = [
-        "modulepart",
         "id",
+        "modulepart",
         "ref",
         "sortfield",
         "sortorder",
@@ -18,6 +18,7 @@ class DolibarrDocuments extends DolibarrCommonObject
     ];
 
     protected $attributes = [
+        "id" => null,
         "modulepart" => "",
         "id" => "",
         "ref" => "",

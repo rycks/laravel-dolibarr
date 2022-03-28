@@ -7,6 +7,7 @@ use Caprel\Dolibarr\Models\DolibarrCommonObject;
 class DolibarrSupplierinvoices extends DolibarrCommonObject
 {
     protected $fillable = [
+        "id",
         "sortfield",
         "sortorder",
         "limit",
@@ -18,6 +19,7 @@ class DolibarrSupplierinvoices extends DolibarrCommonObject
     ];
 
     protected $attributes = [
+        "id" => null,
         "sortfield" => "t.rowid",
         "sortorder" => "ASC",
         "limit" => 100,
