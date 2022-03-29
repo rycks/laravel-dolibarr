@@ -1,11 +1,10 @@
 <?php
-
 namespace Caprel\Dolibarr\Models;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use Caprel\Dolibarr\Traits\DolibarrTrait;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Collection;
 
 class DolibarrCommonObject extends Model
 {
@@ -26,7 +25,7 @@ class DolibarrCommonObject extends Model
             $data = [];
         }
 
-        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", url=$url , data request is " . json_encode($data));
+        // Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", url=$url , data request is " . json_encode($data));
         $result = ($this->CallAPI(
             "GET",
             $url,
@@ -40,21 +39,22 @@ class DolibarrCommonObject extends Model
             return collect([]);
         }
 
-        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data result is " . gettype($result));
+        // Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data result is " . gettype($result));
         return collect($result);
     }
 
     public function where($fieldname, $operator, $value)
     {
-        if($fieldname == "id") {
-            $this->attributes['id'] = $value;
+        // Log::debug("DolibarrCommonObject call WHERE $fieldname $operator $value");
+        if ($fieldname == "id") {
+            $this->id = $value;
         } else {
             $this->sqlfilters = "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
         }
         return $this;
     }
 
-    public function orderBy($field, $order='ASC')
+    public function orderBy($field, $order = 'ASC')
     {
         $this->sortfield = "t." . $field;
         $this->sortorder = $order;
@@ -72,4 +72,50 @@ class DolibarrCommonObject extends Model
         $this->mode = $mode;
         return $this;
     }
+
+    public function create($attributes)
+    {
+        // Log::debug("DolibarrCommonObject call CREATE on " . $this->objectlabel . "...");
+        $url = $this->objectlabel;
+        $data = json_encode($attributes);
+        // Log::debug("DolibarrCommonObject::POST for " . $this->objectlabel . ", url=$url , data request is " . $data);
+        $result = ($this->CallAPI(
+            "POST",
+            $url,
+            $data
+        ));
+        return $result;
+    }
+
+
+    public function validate($id, $attributes)
+    {
+        // Log::debug("DolibarrCommonObject call VALIDATE on " . $this->objectlabel . "...");
+        $url = $this->objectlabel . '/' . $id . '/validate';
+        $data = json_encode($attributes);
+        // Log::debug("DolibarrCommonObject::POST for " . $this->objectlabel . ", url=$url , data request is " . $data);
+        $result = ($this->CallAPI(
+            "POST",
+            $url,
+            $data
+        ));
+        return $result;
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        // Log::debug("DolibarrCommonObject call UPDATE on " . $this->objectlabel . "...");
+        $url = $this->objectlabel . '/' . $attributes['id'];
+        $data = json_encode($attributes);
+        // Log::debug("DolibarrCommonObject::PUT for " . $this->objectlabel . ", url=$url , data request is " . $data);
+        $result = ($this->CallAPI(
+            "PUT",
+            $url,
+            $data
+        ));
+        return $result;
+    }
+
 }
+
+
