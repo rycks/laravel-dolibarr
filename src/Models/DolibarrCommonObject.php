@@ -10,8 +10,15 @@ class DolibarrCommonObject extends Model
 {
     use DolibarrTrait;
 
-    public function get(): Collection
+    /**
+     * Execute the query as a SQL "select" statement.
+     *
+     * @param  array|string  $columns
+     * @return object|array|\Illuminate\Support\Collection
+     */
+    public function get()
     {
+        //TODO: add $columns = ['*'] param
         $data = [];
         foreach ($this->fillable as $key) {
             if (isset($this->$key) && $this->$key != "") {
@@ -39,9 +46,15 @@ class DolibarrCommonObject extends Model
             return collect([]);
         }
 
-        // Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data result is " . gettype($result));
+        Log::debug("DolibarrCommonObject::get for " . $this->objectlabel . ", data result is " . gettype($result));
+        //le retour peut-être soit une liste d'objet (tableau) soit un objet seul, dans ce cas on le retourne tel quel
+        if (is_object($result)) {
+            return $result;
+        }
         return collect($result);
     }
+
+
 
     public function where($fieldname, $operator, $value)
     {
@@ -87,7 +100,6 @@ class DolibarrCommonObject extends Model
         return $result;
     }
 
-
     public function validate($id, $attributes)
     {
         // Log::debug("DolibarrCommonObject call VALIDATE on " . $this->objectlabel . "...");
@@ -115,7 +127,4 @@ class DolibarrCommonObject extends Model
         ));
         return $result;
     }
-
 }
-
-
