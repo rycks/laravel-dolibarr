@@ -10,6 +10,7 @@ trait DolibarrTrait
     private $password = null;
     private $auth_access = false;
     private $server_uri = null;
+    private $user_agent = null;
 
     public function __construct(array $attributes = []) {
         // Log::debug("Constructeur du trait dolibarr");
@@ -18,6 +19,7 @@ trait DolibarrTrait
         $this->password = config('dolibarr.password');
         $this->auth_access = config('dolibarr.auth_access');
         $this->server_uri = config('dolibarr.server_uri');
+        $this->user_agent = config('dolibarr.user_agent');
         parent::__construct($attributes);
     }
 
@@ -27,6 +29,9 @@ trait DolibarrTrait
         $loginParam = ["login" => $this->login, "password" => $this->password, "reset" => $reset];
         $curl = curl_init();
         $httpheader = [];
+        if(isset($this->user_agent)) {
+            $httpheader[] = 'User-Agent:'.$this->user_agent;
+        }
 
         $url = $this->server_uri . "/api/index.php/login";
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -51,6 +56,10 @@ trait DolibarrTrait
     {
         $curl = curl_init();
         $httpheader = ['DOLAPIKEY: ' .$this->token];
+        if(isset($this->user_agent)) {
+            $httpheader[] = 'User-Agent:'.$this->user_agent;
+        }
+
         $url = $this->server_uri."/api/index.php/" . $url;
         // Log::debug("DolibarrTrait::CallAPI with token = " . $this->token);
 
