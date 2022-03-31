@@ -54,7 +54,17 @@ class DolibarrCommonObject extends Model
         return collect($result);
     }
 
-
+    /**
+     * Execute the query as a SQL "select" statement.
+     *
+     * @param  int  $id
+     * @return object
+     */
+    public function find($id)
+    {
+        $this->id = $id;
+        return $this->get();
+    }
 
     public function where($fieldname, $operator, $value)
     {
