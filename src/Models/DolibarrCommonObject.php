@@ -110,11 +110,37 @@ class DolibarrCommonObject extends Model
         return $result;
     }
 
-    public function validate($id, $attributes)
+    public function validate($id, $attributes = [])
     {
         // Log::debug("DolibarrCommonObject call VALIDATE on " . $this->objectlabel . "...");
         $url = $this->objectlabel . '/' . $id . '/validate';
         $data = json_encode($attributes);
+        // Log::debug("DolibarrCommonObject::POST for " . $this->objectlabel . ", url=$url , data request is " . $data);
+        $result = ($this->CallAPI(
+            "POST",
+            $url,
+            $data
+        ));
+        return $result;
+    }
+
+    /**
+     * add a line on a invoice (or others objects)
+     *
+     * @param   [type]  $id    id object
+     * @param   [type]  $line  line to add
+     *
+     * @return  [type]         [return description]
+     */
+    public function addLine($id, $line)
+    {
+        $modules = ['bankaccounts','contracts','invoices','orders','proposals','shipments','supplierinvoices'];
+        if(!in_array($this->objectlabel,$modules)) {
+            return -1;
+        }
+        // Log::debug("DolibarrCommonObject call VALIDATE on " . $this->objectlabel . "...");
+        $url = $this->objectlabel . '/' . $id . '/lines';
+        $data = json_encode($line);
         // Log::debug("DolibarrCommonObject::POST for " . $this->objectlabel . ", url=$url , data request is " . $data);
         $result = ($this->CallAPI(
             "POST",
@@ -137,4 +163,5 @@ class DolibarrCommonObject extends Model
         ));
         return $result;
     }
+
 }
