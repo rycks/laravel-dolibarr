@@ -69,10 +69,13 @@ class DolibarrCommonObject extends Model
     public function where($fieldname, $operator, $value)
     {
         // Log::debug("DolibarrCommonObject call WHERE $fieldname $operator $value");
+        if($this->sqlfilters != "") {
+            $this->sqlfilters .= " AND ";
+        }
         if ($fieldname == "id") {
             $this->id = $value;
         } else {
-            $this->sqlfilters = "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
+            $this->sqlfilters .= "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
         }
         return $this;
     }
