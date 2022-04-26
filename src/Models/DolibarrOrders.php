@@ -33,4 +33,23 @@ class DolibarrOrders extends DolibarrCommonObject
         $attributes['objectlabel'] =  "orders";
         parent::__construct($attributes);
     }
+
+    public function deleteLine($orderID, $lineID)
+    {
+        $result = ($this->CallAPI(
+            "DELETE",
+            $this->objectlabel . '/' . $orderID . '/lines/' . $lineID
+        ));
+        return $result;
+    }
+
+    public function addLine($orderID, $data)
+    {
+        $result = ($this->CallAPI(
+            "POST",
+            $this->objectlabel . '/' . $orderID . '/lines/',
+            json_encode($data)
+        ));
+        return $result;
+    }
 }
