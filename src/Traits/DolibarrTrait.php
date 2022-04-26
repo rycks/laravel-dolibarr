@@ -12,7 +12,8 @@ trait DolibarrTrait
     private $server_uri = null;
     private $user_agent = null;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
         // Log::debug("Constructeur du trait dolibarr");
         $this->token = config('dolibarr.api_key');
         $this->login = config('dolibarr.login');
@@ -29,8 +30,8 @@ trait DolibarrTrait
         $loginParam = ["login" => $this->login, "password" => $this->password, "reset" => $reset];
         $curl = curl_init();
         $httpheader = [];
-        if(isset($this->user_agent)) {
-            $httpheader[] = 'User-Agent:'.$this->user_agent;
+        if (isset($this->user_agent)) {
+            $httpheader[] = 'User-Agent:' . $this->user_agent;
         }
 
         $url = $this->server_uri . "/api/index.php/login";
@@ -41,7 +42,7 @@ trait DolibarrTrait
 
         if ($this->auth_access) {
             curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($curl, CURLOPT_USERPWD, $this->login. ":" . $this->password);
+            curl_setopt($curl, CURLOPT_USERPWD, $this->login . ":" . $this->password);
         }
 
         $tokenResult = json_decode(curl_exec($curl), true);
@@ -55,12 +56,12 @@ trait DolibarrTrait
     public function CallAPI($method, $url, $data = null)
     {
         $curl = curl_init();
-        $httpheader = ['DOLAPIKEY: ' .$this->token];
-        if(isset($this->user_agent)) {
-            $httpheader[] = 'User-Agent:'.$this->user_agent;
+        $httpheader = ['DOLAPIKEY: ' . $this->token];
+        if (isset($this->user_agent)) {
+            $httpheader[] = 'User-Agent:' . $this->user_agent;
         }
 
-        $url = $this->server_uri."/api/index.php/" . $url;
+        $url = $this->server_uri . "/api/index.php/" . $url;
         // Log::debug("DolibarrTrait::CallAPI with token = " . $this->token);
 
         switch ($method) {
@@ -71,18 +72,26 @@ trait DolibarrTrait
                 if (null !== $data) {
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 }
+            break;
 
-                break;
             case "PUT":
-
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
                 $httpheader[] = "Content-Type:application/json";
 
                 if (null !== $data) {
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 }
+            break;
 
-                break;
+            case "DELETE":
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
+                $httpheader[] = "Content-Type:application/json";
+
+                if (null !== $data) {
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                }
+            break;
+
             default:
                 if (null !== $data) {
                     $url = sprintf("%s?%s", $url, http_build_query($data));
@@ -91,7 +100,7 @@ trait DolibarrTrait
         // Optional Authentication:
         if ($this->auth_access) {
             curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($curl, CURLOPT_USERPWD, $this->login. ":" . $this->password);
+            curl_setopt($curl, CURLOPT_USERPWD, $this->login . ":" . $this->password);
         }
 
         curl_setopt($curl, CURLOPT_URL, $url);
