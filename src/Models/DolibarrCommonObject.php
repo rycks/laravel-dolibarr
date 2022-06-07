@@ -69,11 +69,14 @@ class DolibarrCommonObject extends Model
     public function where($fieldname, $operator, $value)
     {
         // Log::debug("DolibarrCommonObject call WHERE $fieldname $operator $value");
-        if($this->sqlfilters != "") {
+        if ($this->sqlfilters != "") {
             $this->sqlfilters .= " AND ";
         }
         if ($fieldname == "id") {
             $this->id = $value;
+        } elseif (in_array($fieldname, $this->fillable)) {
+            //exemple where('type','=','customer')
+            $this->$fieldname = $value;
         } else {
             $this->sqlfilters .= "(t." . $fieldname . ":" . $operator . ":'" . $value . "')";
         }
@@ -137,8 +140,8 @@ class DolibarrCommonObject extends Model
      */
     public function addLine($id, $line)
     {
-        $modules = ['bankaccounts','contracts','invoices','orders','proposals','shipments','supplierinvoices'];
-        if(!in_array($this->objectlabel,$modules)) {
+        $modules = ['bankaccounts', 'contracts', 'invoices', 'orders', 'proposals', 'shipments', 'supplierinvoices'];
+        if (!in_array($this->objectlabel, $modules)) {
             return -1;
         }
         // Log::debug("DolibarrCommonObject call VALIDATE on " . $this->objectlabel . "...");
@@ -166,5 +169,4 @@ class DolibarrCommonObject extends Model
         ));
         return $result;
     }
-
 }
