@@ -38,4 +38,21 @@ class DolibarrThirdparties extends DolibarrCommonObject
         $attributes['objectlabel'] =  "thirdparties";
         parent::__construct($attributes);
     }
+
+    /**
+     * add a tag / categorie on a thirdparty
+     *
+     * @param   [type]  $id     [$id description]
+     * @param   [type]  $catID  [$catID description]
+     *
+     * @return  [type]          [return description]
+     */
+    public function addCategorie($id, $catID)
+    {
+        $result = ($this->CallAPI(
+            "POST",
+            $this->objectlabel . '/' . $id . '/categories/' . $catID
+        ));
+        return $result;
+    }
 }
