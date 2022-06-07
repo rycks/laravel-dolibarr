@@ -40,4 +40,20 @@ class DolibarrProducts extends DolibarrCommonObject
         $attributes['objectlabel'] =  "products";
         parent::__construct($attributes);
     }
+
+    /**
+     * get all sub products (kit)
+     *
+     * @param   int  $productID  id product
+     *
+     * @return  array  list of products
+     */
+    public function subProducts($productID)
+    {
+        $result = ($this->CallAPI(
+            "GET",
+            $this->objectlabel . '/' . $productID . '/subproducts/',
+        ));
+        return $result;
+    }
 }
