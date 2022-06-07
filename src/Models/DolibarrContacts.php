@@ -40,6 +40,14 @@ class DolibarrContacts extends DolibarrCommonObject
         parent::__construct($attributes);
     }
 
+    /**
+     * add a tag / categorie on a people/contact
+     *
+     * @param   [type]  $id     [$id description]
+     * @param   [type]  $catID  [$catID description]
+     *
+     * @return  [type]          [return description]
+     */
     public function addCategorie($id, $catID)
     {
         $result = ($this->CallAPI(
