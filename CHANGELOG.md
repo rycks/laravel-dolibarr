@@ -1,5 +1,15 @@
 # ChangeLog
 
+
+
+## 1.0.3 (2022-03-31)
+CommonObject return an object or an collection
+Add User-Agent on requests (easy to log server side)
+New download method for documents
+New find method on CommonObjects
+Activate a contract line
+AddLine on most of dolibarr objects ('bankaccounts','contracts','invoices','orders','proposals','shipments','supplierinvoices')
+
 ## 1.0.2 (2022-03-29)
 
 Add create (POST) / update (PUT) / validate dolibarr call requests
