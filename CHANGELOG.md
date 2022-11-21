@@ -1,6 +1,15 @@
 # ChangeLog
 
-
+## 1.0.4 (2022-06-07)
+Implement multiple where requests with AND logical operator
+Implement DELETE commands
+New object : DolibarrSetupCompany to get informations about dolibarr company settings
+Implement addLine and deleteLine on Orders
+add Categorie on Contacts
+add subProducts get on products
+add Categorie on Objects
+add better filter options
+add Categorie on dolibarr Thirdpart
 
 ## 1.0.3 (2022-03-31)
 CommonObject return an object or an collection
