@@ -22,7 +22,7 @@ class DolibarrSetupDictionaryCountries extends DolibarrCommonObject
         "id" => null,
         "sortfield" => "",
         "sortorder" => "",
-        "limit" => "",
+        "limit" => "2000",
         "page" => "",
         "filter" => "",
         "lang" => "",
