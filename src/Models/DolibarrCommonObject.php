@@ -41,7 +41,7 @@ class DolibarrCommonObject extends Model
 
         if ($result === null or isset($result->error)) {
             if (isset($result->error->message)) {
-                Log::error("dolibarr: " . $result->error->message);
+                Log::notice("laravel-dolibarr: " . $result->error->message);
             }
             return collect([]);
         }
