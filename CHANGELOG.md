@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 1.0.6 (2023-01-02)
+Change composer version depends
+
+## 1.0.5 (2022-11-30)
+Do not limit country list
+
 ## 1.0.4 (2022-06-07)
 Implement multiple where requests with AND logical operator
 Implement DELETE commands
