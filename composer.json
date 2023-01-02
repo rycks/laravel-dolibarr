@@ -16,9 +16,9 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "illuminate/config": "^6.0 || ^7.0 || ^8.0",
-        "illuminate/support": "^6.0 || ^7.0 || ^8.0"
+        "php": "^7.4|^8.0|^8.1|^8.2",
+        "illuminate/config": ">6.0.0",
+        "illuminate/support": ">6.0.0"
     },
     "require-dev": {
     },
