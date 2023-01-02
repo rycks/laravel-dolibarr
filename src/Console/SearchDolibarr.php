@@ -55,12 +55,16 @@ class SearchDolibarr extends Command
         }
         $res = $tp->get();
         foreach ($res as $c) {
-            dump([
-                'name' => $c['name'],
-                'address' => $c['address'],
-                'zip' => $c['zip'],
-                'town' => $c['town'],
-            ]);
+            if (is_array($c)) {
+                dump([
+                    'name' => $c['name'],
+                    'address' => $c['address'],
+                    'zip' => $c['zip'],
+                    'town' => $c['town'],
+                ]);
+            }else {
+                dump($c);
+            }
         }
     }
 }
