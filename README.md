@@ -1,4 +1,4 @@
-# Access to your Dolibarr From Laravel app
+# Access to your Dolibarr REST API from Laravel app
 
 ## Installation
 
