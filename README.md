@@ -8,7 +8,7 @@
 composer require caprel/laravel-dolibarr
 ```
 
-Voir https://packagist.org/packages/caprel/laravel-dolibarr
+Please have a look at https://packagist.org/packages/caprel/laravel-dolibarr
 
 ## Publish config file :
 
@@ -77,3 +77,12 @@ Whith all dolibarr objects:
  * Thirdparties
  * Users
  * Warehouses
+
+
+## Demo App
+
+There is a demo app: 
+
+## Support
+
+Please have a look at https://cap-rel.fr/services/soutien-rd/ (use a online translator to get it in your language) ...
