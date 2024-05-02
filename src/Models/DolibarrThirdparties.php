@@ -42,8 +42,8 @@ class DolibarrThirdparties extends DolibarrCommonObject
     /**
      * add a tag / categorie on a thirdparty
      *
-     * @param   [type]  $id     [$id description]
-     * @param   [type]  $catID  [$catID description]
+     * @param   [type]  $id     soc (thirdpart) id
+     * @param   [type]  $catID  dolibarr category id
      *
      * @return  [type]          [return description]
      */
